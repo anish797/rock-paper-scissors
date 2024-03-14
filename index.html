@@ -3,9 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
   <title>Document</title>
 </head>
 <body>
-  <script src="script.js"></script>
+  <div class="header">ROCK PAPER SCISSORS</div>
+  <div class="versus">
+    <div class="player">
+      <div class="choice"></div>
+    </div>
+    Vs
+    <div class="comp">
+      <div class="choice"></div>
+    </div>
+  </div>
+  <div class="choices">
+    <button class="playerChoices" data-choice="rock"><img src="./images/rock-removebg-preview.png" alt="rock"></button>
+    <button class="playerChoices" data-choice="paper"><img src="./images/paper-removebg-preview.png" alt="paper"></button>
+    <button class="playerChoices" data-choice="scissors"><img src="./images/scissors-removebg-preview.png" alt="scissors"></button>
+  </div>
+  <div class="result"></div>
+  <div class="score"></div>
+  <div class="finalResult"></div>
 </body>
 </html>
