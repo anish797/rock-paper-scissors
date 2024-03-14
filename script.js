@@ -10,15 +10,15 @@ function getComputerChoice(){
   let computerChoice=Math.ceil(Math.random()*3);
   if(computerChoice==1){
     comp.innerHTML="";
-    comp.innerHTML=`<img src="./images/rock-removebg-preview.png" alt="rock"></img>`
+    comp.innerHTML=`<img src="./images/rock-removebg-preview-removebg-preview.png" alt="rock"></img>`
     return "Rock";
   } else if(computerChoice==2){
     comp.innerHTML="";
-    comp.innerHTML=`<img src="./images/rock-removebg-preview.png" alt="rock"></img>`
+    comp.innerHTML=`<img src="./images/paper-removebg-preview.png" alt="paper"></img>`
     return "Paper";
   } else if(computerChoice==3){
     comp.innerHTML="";
-    comp.innerHTML=`<img src="./images/rock-removebg-preview.png" alt="rock"></img>`
+    comp.innerHTML=`<img src="./images/scissors-removebg-preview.png" alt="scissors"></img>`
     return "Scissors";
   }
 }
