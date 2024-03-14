@@ -1,8 +1,11 @@
 const result = document.querySelector(".result");
-const score = document.querySelector(".score")
+// const score = document.querySelector(".score");
 const finalResult = document.querySelector(".finalResult");
 const player = document.querySelector(".player");
 const comp = document.querySelector(".comp");
+const rules = document.querySelector(".rules");
+const yourScore = document.querySelector(".your-score");
+const cpuScore = document.querySelector(".cpu-score");
 let playerScore = 0;
 let computerScore = 0;
 
@@ -10,49 +13,57 @@ function getComputerChoice(){
   let computerChoice=Math.ceil(Math.random()*3);
   if(computerChoice==1){
     comp.innerHTML="";
-    comp.innerHTML=`<img src="./images/rock-removebg-preview-removebg-preview.png" alt="rock"></img>`
+    comp.innerHTML=`<img src="./images/rock.png" alt="rock"></img>`;
     return "Rock";
   } else if(computerChoice==2){
     comp.innerHTML="";
-    comp.innerHTML=`<img src="./images/paper-removebg-preview.png" alt="paper"></img>`
+    comp.innerHTML=`<img src="./images/paper.png" alt="paper"></img>`;
     return "Paper";
   } else if(computerChoice==3){
     comp.innerHTML="";
-    comp.innerHTML=`<img src="./images/scissors-removebg-preview.png" alt="scissors"></img>`
+    comp.innerHTML=`<img src="./images/scissors.png" alt="scissors"></img>`;
     return "Scissors";
   }
 }
 
 function playRound(playerChoice){
-  let computerChoice=getComputerChoice().toLowerCase();;
-  if(playerChoice=="rock" && computerChoice=="paper"){
-    player.innerhtml=`<img src="./images/rock-removebg-preview.png" alt="rock"></img>`;
-    result.textContent= "You Lose! Paper beats Rock";
-    computerScore++;
-  } else if(playerChoice=="rock" && computerChoice=="scissors"){
-      player.innerhtml=`<img src="./images/rock-removebg-preview.png" alt="rock"></img>`;
-      result.textContent= "You Win! Rock beats Scissors";
-      playerScore++;
-  } else if(playerChoice=="rock" && computerChoice=="rock"){
-      player.innerhtml=`<img src="./images/rock-removebg-preview.png" alt="rock"></img>`;
-      result.textContent= "It's a draw, no one wins!";
-  } else if(playerChoice=="paper" && computerChoice=="rock"){
-      result.textContent= "You Win! Paper beats Rock";
-      playerScore++;
-  } else if(playerChoice=="paper" && computerChoice=="paper"){
-      result.textContent= "It's a draw, no one wins!";
-  } else if(playerChoice=="paper" && computerChoice=="scissors"){
-      result.textContent= "You Lose! Scissors beats Paper";
+  let computerChoice=getComputerChoice().toLowerCase();
+  if(playerChoice=="rock"){
+    player.innerHTML=`<img src="./images/rock.png" alt="rock"></img>`;
+    if(computerChoice=="rock"){
+      rules.textContent= "It's a draw, no one wins!";
+    }else if(computerChoice=="paper"){
+      rules.textContent= "You Lose! Paper beats Rock";
       computerScore++;
-  } else if(playerChoice=="scissors" && computerChoice=="rock"){
-      result.textContent= "You Lose! Rock beats Scissors";
-      computerScore++;
-  } else if(playerChoice=="scissors" && computerChoice=="paper"){
-      result.textContent= "You Win! Scissors beats Paper";
+    }else{
+      rules.textContent= "You Win! Rock beats Scissors";
       playerScore++;
-  } else if(playerChoice=="scissors" && computerChoice=="scissors"){
-      result.textContent= "It's a draw, no one wins!";
+    }
+  }else if(playerChoice=="paper"){
+    player.innerHTML=`<img src="./images/paper.png" alt="paper"></img>`;
+    if(computerChoice=="rock"){
+      rules.textContent= "You Win! Paper beats Rock";
+      playerScore++;
+    }else if(computerChoice=="paper"){
+      rules.textContent= "It's a draw, no one wins!";
+    }else{
+      rules.textContent= "You Lose! Scissors beats Paper";
+      computerScore++;
+    }
+  }else{
+    player.innerHTML=`<img src="./images/scissors.png" alt="scissors"></img>`;
+    if(computerChoice=="rock"){
+      rules.textContent= "You Lose! Rock beats Scissors";
+      computerScore++;
+    }else if(computerChoice=="paper"){
+      rules.textContent= "You Win! Scissors beats Paper";
+      playerScore++;
+    }else{
+      rules.textContent= "It's a draw, no one wins!";
+    }
   }
+  yourScore.textContent = `${playerScore}`;
+  cpuScore.textContent = `${computerScore}`;
   score.textContent=`${playerScore}-${computerScore}`;
   if(playerScore===5){
     if(playerScore>computerScore){
@@ -64,8 +75,9 @@ function playRound(playerChoice){
     }
     playerScore=0;
     computerScore=0;
-    score.textContent=`${playerScore}-${computerScore}`;
   }
+
+  
 }
 
 const buttons = document.querySelectorAll(".playerChoices");
@@ -76,6 +88,12 @@ buttons.forEach((button)=>{
   });
 });
 
-if(playerScore===5){
-  console.log("hi")
-}
+const images = document.querySelectorAll("button img");
+images.forEach((image)=>{
+  image.addEventListener('mouseover', function() {
+    this.classList.add('hovered');
+  });
+  image.addEventListener('mouseout', function() {
+    this.classList.remove('hovered');
+  });
+})
